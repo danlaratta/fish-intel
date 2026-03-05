@@ -19,8 +19,8 @@ class User:
             native_enum=True,
             values_callable=lambda enum_cls: [e.value for e in enum_cls]
         ),
-        default=UserRole.MEMBER,
-        nullable=False
+        nullable=False,
+        default=UserRole.MEMBER
     )
     subscription_tier: Mapped[SubscriptionTier] = mapped_column(
         Enum(
@@ -29,11 +29,15 @@ class User:
             native_enum=True,
             values_callable=lambda enum_cls: [e.value for e in enum_cls]
         ),
-        default=SubscriptionTier.FREE,
-        nullable=False
+        nullable=False,
+        default=SubscriptionTier.FREE
     )
     is_active: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
     created_at: Mapped[datetime] = mapped_column(TIMESTAMP(timezone=True), nullable=False, server_default=func.now())
-    updated_at: Mapped[datetime] = mapped_column(TIMESTAMP(timezone=True), nullable=True)
+    updated_at: Mapped[datetime | None] = mapped_column(TIMESTAMP(timezone=True), nullable=True)
 
-    # Relationships
+    # Relationship
+    # session
+    # fishing spot
+    # catchlog
+    # notifications

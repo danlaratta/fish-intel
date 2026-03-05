@@ -19,12 +19,14 @@ class FishingSession:
         nullable=False
     )
     created_at: Mapped[datetime] = mapped_column(TIMESTAMP(timezone=True), nullable=False, server_default=func.now())
-    updated_at: Mapped[datetime] = mapped_column(TIMESTAMP(timezone=True), nullable=True)
+    updated_at: Mapped[datetime | None] = mapped_column(TIMESTAMP(timezone=True), nullable=True)
 
     # Foreign Keys
-
+    # user_id 
+    # fishing_spot_id 
+    # conditions_id 
 
     # Relationships
-    
+    # catchlog
 
 
