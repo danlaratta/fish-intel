@@ -1,10 +1,11 @@
 from sqlalchemy import Integer, Enum, TIMESTAMP, func
 from sqlalchemy.orm import Mapped, mapped_column
 from datetime import datetime
+from app.models.base import Base 
 from app.enums.fishing_method import FishingMethod
 
 
-class FishingSession:
+class FishingSession(Base):
     __tablename__ = 'fishing_sessions'
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)

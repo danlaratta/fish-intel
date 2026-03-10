@@ -1,15 +1,15 @@
-from sqlalchemy import Integer, Float, String, Enum
+from sqlalchemy import Integer, Date, Enum, String
 from sqlalchemy.orm import Mapped, mapped_column
+from datetime import date
 from app.models.base import Base 
 from app.enums.region_type import RegionType
 
-class FishLimit(Base):
-    __tablename__ = 'fish_limits'
+class FishSeason(Base):
+    __tablename__ = 'fish_seasons'
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
-    min_size_inches: Mapped[float | None] = mapped_column(Float, nullable=True)
-    max_size_inches: Mapped[float | None] = mapped_column(Float, nullable=True)
-    limit_amount: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    season_start: Mapped[date | None] = mapped_column(Date, nullable=True)
+    season_end: Mapped[date | None] = mapped_column(Date, nullable=True)
     region: Mapped[str] = mapped_column(String(150), nullable=False, unique=True)
     region_type: Mapped[RegionType] = mapped_column(
         Enum(
@@ -24,3 +24,4 @@ class FishLimit(Base):
 
     # Foreign Key
     # species_id
+
