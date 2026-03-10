@@ -1,8 +1,12 @@
 from sqlalchemy import Integer, Enum, String
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.models.base import Base 
+from typing import TYPE_CHECKING
 from app.enums.lure_type import LureType
 from app.enums.tackle_type import TackleType
+
+if TYPE_CHECKING:
+    from app.models.catch_log import CatchLog
 
 class Tackle(Base):
     __tablename__ = 'tackle'
@@ -30,5 +34,5 @@ class Tackle(Base):
     jig_head_size: Mapped[str | None] = mapped_column(String(100), nullable=True)
 
     # Relationship
-    # catch log one to one
+    catch_logs: Mapped[list[CatchLog]] = relationship(back_populates='tackle', cascade='all, delete-orphan')
     

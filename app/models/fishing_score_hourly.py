@@ -1,7 +1,12 @@
-from sqlalchemy import Integer, DateTime
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import ForeignKey, Integer, DateTime
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import datetime
+from typing import TYPE_CHECKING
 from app.models.base import Base 
+
+if TYPE_CHECKING:
+    from app.models.fishing_spot import FishingSpot
+
 
 class FishingScoreHourly(Base):
     __tablename__ = 'hourly_scores'
@@ -11,4 +16,7 @@ class FishingScoreHourly(Base):
     score_points: Mapped[int] = mapped_column(Integer, nullable=False)
     
     # Foreign Keys
-    # fishing_spot_id: Mapped[int] = mapped_column(ForeignKey("fishing_spots.id"), nullable=False)
+    fishing_spot_id: Mapped[int] = mapped_column(ForeignKey('fishing_spots.id'), nullable=False)
+
+    # Relationships
+    fishing_spot: Mapped[FishingSpot] = relationship(back_populates='hourly_scores')

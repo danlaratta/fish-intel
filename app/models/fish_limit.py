@@ -1,7 +1,11 @@
-from sqlalchemy import Integer, Float, String, Enum
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import Integer, Float, String, Enum, ForeignKey
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+from typing import TYPE_CHECKING 
 from app.models.base import Base 
 from app.enums.region_type import RegionType
+
+if TYPE_CHECKING:
+    from app.models.fish_species import FishSpecies
 
 class FishLimit(Base):
     __tablename__ = 'fish_limits'
@@ -23,4 +27,7 @@ class FishLimit(Base):
     )
 
     # Foreign Key
-    # species_id
+    species_id: Mapped[int] = mapped_column(ForeignKey('species.id'), nullable=False)
+
+    # Relationships
+    fish_species: Mapped[FishSpecies] = relationship(back_populates='fish_limits')

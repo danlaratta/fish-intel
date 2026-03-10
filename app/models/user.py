@@ -1,10 +1,17 @@
 from sqlalchemy import Integer, String, Enum, Boolean, TIMESTAMP, func
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import datetime
+from typing import TYPE_CHECKING
 from app.models.base import Base 
 from app.enums.user_role import UserRole
 from app.enums.subscription_tier import SubscriptionTier
 
+
+if TYPE_CHECKING:
+    from app.models.fishing_session import FishingSession
+    from app.models.fishing_spot import FishingSpot
+    from app.models.catch_log import CatchLog
+    from app.models.notification_settings import NotificationSettings
 
 class User(Base):
     __tablename__ = 'users'
@@ -38,7 +45,7 @@ class User(Base):
     updated_at: Mapped[datetime | None] = mapped_column(TIMESTAMP(timezone=True), nullable=True)
 
     # Relationship
-    # session
-    # fishing spot
-    # catchlog
-    # notifications
+    fishing_sessions: Mapped[list[FishingSession]] = relationship(back_populates='user', cascade='all, delete-orphan')
+    fishing_spots: Mapped[list[FishingSpot]] = relationship(back_populates='user', cascade='all, delete-orphan')
+    catch_logs: Mapped[list[CatchLog]] = relationship(back_populates='user', cascade='all, delete-orphan')
+    notification_settings: Mapped[NotificationSettings] = relationship(back_populates='user', cascade='all, delete-orphan', uselist=False)

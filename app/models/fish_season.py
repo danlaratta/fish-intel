@@ -1,8 +1,12 @@
-from sqlalchemy import Integer, Date, Enum, String
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import ForeignKey, Integer, Date, Enum, String
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import date
+from typing import TYPE_CHECKING
 from app.models.base import Base 
 from app.enums.region_type import RegionType
+
+if TYPE_CHECKING:
+    from app.models.fish_species import FishSpecies
 
 class FishSeason(Base):
     __tablename__ = 'fish_seasons'
@@ -23,5 +27,8 @@ class FishSeason(Base):
     )
 
     # Foreign Key
-    # species_id
+    species_id: Mapped[int] = mapped_column(ForeignKey('species.id'), nullable=False)
+
+    # Relationships
+    fish_species: Mapped[FishSpecies] = relationship(back_populates='fish_seasons')
 

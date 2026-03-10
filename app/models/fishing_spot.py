@@ -1,6 +1,16 @@
-from sqlalchemy import Integer, Float, String
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import ForeignKey, Integer, Float, String
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+from typing import TYPE_CHECKING
 from app.models.base import Base 
+
+if TYPE_CHECKING:
+    from app.models.user import User
+    from app.models.fishing_session import FishingSession
+    from app.models.weather_condition import WeatherCondition
+    from app.models.marine_weather_condition import MarineWeatherCondition
+    from app.models.tide import Tide
+    from app.models.catch_log import CatchLog
+    from app.models.fishing_score_hourly import FishingScoreHourly
 
 class FishingSpot(Base):
     __tablename__ = 'fishing_spots'
@@ -11,8 +21,13 @@ class FishingSpot(Base):
     latitude: Mapped[float] = mapped_column(Float, nullable=False)
 
     # Foreign Key
-    # user_id
+    user_id: Mapped[int] = mapped_column(ForeignKey('users.id'), nullable=False)
 
     # Relationships
-    # session
-    # condition
+    user: Mapped[User] = relationship(back_populates='fishing_spots')
+    fishing_sessions: Mapped[list[FishingSession]] = relationship(back_populates='fishing_spot', cascade='all, delete-orphan')
+    weather_conditions: Mapped[list[WeatherCondition]] = relationship(back_populates='fishing_spot', cascade='all, delete-orphan')
+    marine_weather_conditions: Mapped[list[MarineWeatherCondition]] = relationship(back_populates='fishing_spot', cascade='all, delete-orphan')
+    tides: Mapped[list[Tide]] = relationship(back_populates='fishing_spot', cascade='all, delete-orphan')
+    catch_logs: Mapped[list[CatchLog]] = relationship(back_populates='fishing_spot', cascade='all, delete-orphan')
+    hourly_scores: Mapped[list[FishingScoreHourly]] = relationship(back_populates='fishing_spot', cascade='all, delete-orphan')
