@@ -1,16 +1,18 @@
 from pydantic import BaseModel
 
+
 class CatchLogBase(BaseModel):
-    pass 
+    length_inches: float 
+    weight_lb: float | None 
+    released: bool
 
 
 class CatchLogCreate(CatchLogBase):
     pass
 
 
-class CatchLogUpdate(CatchLogBase):
-    pass
-
-
 class CatchLogResponse(CatchLogBase):
-    pass
+    id: int 
+
+    class Config:
+        from_attributes = True

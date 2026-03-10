@@ -14,4 +14,7 @@ class NotificationSettingsUpdate(NotificationSettingsBase):
 
 
 class NotificationSettingsResponse(NotificationSettingsBase):
-    pass
+    id: int 
+
+    class Config:
+        from_attributes = True

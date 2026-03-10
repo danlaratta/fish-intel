@@ -14,4 +14,7 @@ class WeatherConditionUpdate(WeatherConditionBase):
 
 
 class WeatherConditionResponse(WeatherConditionBase):
-    pass
+    id: int 
+
+    class Config:
+        from_attributes = True

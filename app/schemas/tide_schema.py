@@ -14,4 +14,7 @@ class TideUpdate(TideBase):
 
 
 class TideResponse(TideBase):
-    pass
+    id: int 
+
+    class Config:
+        from_attributes = True

@@ -14,4 +14,7 @@ class MarineWeatherConditionUpdate(MarineWeatherConditionBase):
 
 
 class MarineWeatherConditionResponse(MarineWeatherConditionBase):
-    pass
+    id: int 
+
+    class Config:
+        from_attributes = True

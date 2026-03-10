@@ -14,4 +14,7 @@ class TackleUpdate(TackleBase):
 
 
 class TackleResponse(TackleBase):
-    pass
+    id: int 
+
+    class Config:
+        from_attributes = True

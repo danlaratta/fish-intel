@@ -14,4 +14,7 @@ class FishSpeciesUpdate(FishSpeciesBase):
 
 
 class FishSpeciesResponse(FishSpeciesBase):
-    pass
+    id: int 
+
+    class Config:
+        from_attributes = True

@@ -14,4 +14,7 @@ class FishLimitUpdate(FishLimitBase):
 
 
 class FishLimitResponse(FishLimitBase):
-    pass
+    id: int 
+
+    class Config:
+        from_attributes = True

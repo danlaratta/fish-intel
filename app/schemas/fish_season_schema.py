@@ -14,4 +14,7 @@ class FishSeasonUpdate(FishSeasonBase):
 
 
 class FishSeasonResponse(FishSeasonBase):
-    pass
+    id: int 
+
+    class Config:
+        from_attributes = True

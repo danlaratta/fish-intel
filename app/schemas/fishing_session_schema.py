@@ -14,4 +14,7 @@ class FishingSessionUpdate(FishingSessionBase):
 
 
 class FishingSessionResponse(FishingSessionBase):
-    pass
+    id: int 
+
+    class Config:
+        from_attributes = True

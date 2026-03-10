@@ -14,4 +14,7 @@ class FishingSpotUpdate(FishingSpotBase):
 
 
 class FishingSpotResponse(FishingSpotBase):
-    pass
+    id: int 
+
+    class Config:
+        from_attributes = True

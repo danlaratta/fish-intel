@@ -14,4 +14,7 @@ class FishingScoreHourlyUpdate(FishingScoreHourlyBase):
 
 
 class FishingScoreHourlyResponse(FishingScoreHourlyBase):
-    pass
+    id: int 
+
+    class Config:
+        from_attributes = True
