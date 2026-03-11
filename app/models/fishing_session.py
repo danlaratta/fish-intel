@@ -35,6 +35,6 @@ class FishingSession(Base):
     # Relationships
     user: Mapped[User] = relationship(back_populates='fishing_sessions')
     fishing_spot: Mapped[FishingSpot] = relationship(back_populates='fishing_sessions')
-    catch_logs: Mapped[list[CatchLog]] = relationship(back_populates='fishing_session', cascade='all, delete-orphan')
+    catch_logs: Mapped[list[CatchLog]] = relationship(back_populates='fishing_session', cascade='all,')
 
 

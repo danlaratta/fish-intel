@@ -8,11 +8,20 @@ class CatchLogBase(BaseModel):
 
 
 class CatchLogCreate(CatchLogBase):
-    pass
+    user_id: int
+    fishing_session_id: int
+    species_id: int
+    tackle_id: int
+    fishing_spot_id: int
 
 
 class CatchLogResponse(CatchLogBase):
     id: int 
+    user_id: int
+    fishing_session_id: int
+    species_id: int
+    tackle_id: int
+    fishing_spot_id: int
 
     class Config:
         from_attributes = True

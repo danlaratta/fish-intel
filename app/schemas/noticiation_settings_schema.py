@@ -2,7 +2,8 @@ from pydantic import BaseModel
 
 
 class NotificationSettingsBase(BaseModel):
-    pass 
+    score_alert_threshold: float 
+    email_notifications_enabled: bool = True
 
 
 class NotificationSettingsCreate(NotificationSettingsBase):
@@ -15,6 +16,7 @@ class NotificationSettingsUpdate(NotificationSettingsBase):
 
 class NotificationSettingsResponse(NotificationSettingsBase):
     id: int 
+    user_id: int 
 
     class Config:
         from_attributes = True

@@ -1,20 +1,28 @@
 from pydantic import BaseModel
+from app.enums.region_type import RegionType
 
 
 class FishLimitBase(BaseModel):
-    pass 
+    min_size_inches: float | None  
+    max_size_inches: float | None  
+    limit_amount: int | None 
+    region: str 
+    region_type: RegionType = RegionType.STATEWIDE
 
 
 class FishLimitCreate(FishLimitBase):
-    pass
+    species_id: int
 
 
 class FishLimitUpdate(FishLimitBase):
-    pass
+    min_size_inches: float | None  
+    max_size_inches: float | None
+    limit_amount: int | None
 
 
 class FishLimitResponse(FishLimitBase):
     id: int 
+    species_id: int
 
     class Config:
         from_attributes = True

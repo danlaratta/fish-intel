@@ -1,20 +1,19 @@
 from pydantic import BaseModel
+from datetime import datetime
 
 
 class FishingScoreHourlyBase(BaseModel):
-    pass 
+    hour: datetime 
+    score: int  
 
 
 class FishingScoreHourlyCreate(FishingScoreHourlyBase):
-    pass
-
-
-class FishingScoreHourlyUpdate(FishingScoreHourlyBase):
-    pass
+    fishing_spot_id: int 
 
 
 class FishingScoreHourlyResponse(FishingScoreHourlyBase):
     id: int 
+    fishing_spot_id: int 
 
     class Config:
         from_attributes = True

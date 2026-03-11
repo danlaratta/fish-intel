@@ -2,14 +2,10 @@ from pydantic import BaseModel
 
 
 class FishSpeciesBase(BaseModel):
-    pass 
+    name: str  
 
 
 class FishSpeciesCreate(FishSpeciesBase):
-    pass
-
-
-class FishSpeciesUpdate(FishSpeciesBase):
     pass
 
 

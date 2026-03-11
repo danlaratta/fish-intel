@@ -11,7 +11,7 @@ class NotificationSettings(Base):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     score_alert_threshold: Mapped[float] = mapped_column(Float, nullable=False)
-    email_notifications_enabled: Mapped[bool] = mapped_column(Boolean, default=True)
+    email_notifications_enabled: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
 
     # Foreign Keys
     user_id: Mapped[int] = mapped_column(ForeignKey('users.id'), nullable=False, unique=True)
