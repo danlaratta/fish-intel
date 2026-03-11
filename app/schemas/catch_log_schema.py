@@ -8,7 +8,6 @@ class CatchLogBase(BaseModel):
 
 
 class CatchLogCreate(CatchLogBase):
-    user_id: int
     fishing_session_id: int
     species_id: int
     tackle_id: int
