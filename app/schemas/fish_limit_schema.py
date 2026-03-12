@@ -14,7 +14,7 @@ class FishLimitCreate(FishLimitBase):
     species_id: int
 
 
-class FishLimitUpdate(FishLimitBase):
+class FishLimitUpdate(BaseModel):
     min_size_inches: float | None  
     max_size_inches: float | None
     limit_amount: int | None

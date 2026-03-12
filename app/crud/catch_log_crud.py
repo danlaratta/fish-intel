@@ -25,6 +25,13 @@ class CatchLogCrud:
             raise DatabaseException(f'No CatchLog found with id: {log_id}')
         
         return catch_log
+    
+
+    # Get all catch logs
+    async def get_all_catch_logs(self, user_id: int) -> list[CatchLog]:
+        result = await self.db_session.execute(select(CatchLog).where(CatchLog.user_id == user_id))
+        catch_logs: list[CatchLog] = list(result.scalars())
+        return catch_logs
 
 
     # Delete catch log
