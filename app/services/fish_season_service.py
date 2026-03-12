@@ -36,5 +36,6 @@ class FishSeasonService:
         
 
     # Delete fish season
-    async def delete_fish_season(self, fish_season: FishSeason) -> None:
+    async def delete_fish_season(self, season_id: int) -> None:
+        fish_season: FishSeason = await self.season_crud.get_fish_season(season_id)
         await self.season_crud.delete_fish_season(fish_season)
