@@ -17,8 +17,8 @@ class CatchLogCrud:
 
 
     # Get catch log by id
-    async def get_catch_log(self, log_id: int) -> CatchLog:
-        result = await self.db_session.execute(select(CatchLog).where(CatchLog.id == log_id))
+    async def get_catch_log(self, log_id: int, user_id: int) -> CatchLog:
+        result = await self.db_session.execute(select(CatchLog).where(CatchLog.id == log_id).where(CatchLog.user_id == user_id))
         catch_log: CatchLog | None = result.scalar_one_or_none()
 
         if catch_log is None:
@@ -28,8 +28,8 @@ class CatchLogCrud:
 
 
     # Delete catch log
-    async def delete_catch_log(self, log_id: int) -> None:
-        pass
+    async def delete_catch_log(self, catch_log: CatchLog) -> None:
+        await self.db_session.delete(catch_log)
 
 
 
