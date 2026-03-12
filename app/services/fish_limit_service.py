@@ -1,5 +1,6 @@
 from typing import Any
 from app.crud.fish_limit_crud import FishLimitCrud
+from app.exceptions.bad_request_exception import BadRequestException
 from app.models.fish_limit import FishLimit
 from app.schemas.fish_limit_schema import FishLimitCreate, FishLimitUpdate
 
@@ -29,6 +30,10 @@ class FishLimitService:
     async def update_fish_limit(self, limit_id: int, limit_update: FishLimitUpdate) -> FishLimit:
         fish_limit: FishLimit = await self.limit_crud.get_fish_limit(limit_id)
         update_limit: dict[str, Any] = limit_update.model_dump(exclude_unset=True)  # exclude_unset=True --> Returns only fields being updated an provided in the request
+        
+        if not update_limit:
+            raise BadRequestException('Failed to update fish limit, no fields provided for update.')
+
         return await self.limit_crud.update_fish_limit(fish_limit, update_limit)
 
 

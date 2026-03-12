@@ -14,7 +14,7 @@ class FishSeasonCreate(FishSeasonBase):
     species_id: int
 
 
-class FishSeasonUpdate(FishSeasonBase):
+class FishSeasonUpdate(BaseModel):
     season_start: date | None 
     season_end: date | None 
 
