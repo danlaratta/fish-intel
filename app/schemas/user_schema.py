@@ -13,6 +13,7 @@ class UserBase(BaseModel):
     is_active: bool = True 
     updated_at: datetime | None 
 
+
 class UserCreate(UserBase):
     pass
 

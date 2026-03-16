@@ -11,7 +11,6 @@ class FishingSessionBase(BaseModel):
 
 
 class FishingSessionCreate(FishingSessionBase):
-    user_id: int 
     fishing_spot_id: int 
 
 

@@ -11,7 +11,6 @@ class CatchLogCreate(CatchLogBase):
     fishing_session_id: int
     species_id: int
     tackle_id: int
-    fishing_spot_id: int
 
 
 class CatchLogResponse(CatchLogBase):
