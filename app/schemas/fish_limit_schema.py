@@ -15,9 +15,11 @@ class FishLimitCreate(FishLimitBase):
 
 
 class FishLimitUpdate(BaseModel):
-    min_size_inches: float | None  
-    max_size_inches: float | None
-    limit_amount: int | None
+    min_size_inches: float | None  = None
+    max_size_inches: float | None  = None
+    limit_amount: int | None = None
+    region: str | None = None
+    region_type: RegionType | None = None
 
 
 class FishLimitResponse(FishLimitBase):

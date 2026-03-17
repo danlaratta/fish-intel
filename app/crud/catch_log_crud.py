@@ -16,7 +16,7 @@ class CatchLogCrud:
         return catch_log
 
 
-    # Get catch log by id
+    # Get catch log
     async def get_catch_log(self, log_id: int, user_id: int) -> CatchLog:
         result = await self.db_session.execute(select(CatchLog).where(CatchLog.id == log_id).where(CatchLog.user_id == user_id))
         catch_log: CatchLog | None = result.scalar_one_or_none()

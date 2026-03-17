@@ -6,7 +6,7 @@ from app.enums.tackle_type import TackleType
 class TackleBase(BaseModel):
     name: str
     tackle_type: TackleType
-    lure_type: LureType 
+    lure_type: LureType | None
     color: str | None 
     lure_size: str | None 
     jig_head_size: str | None 

@@ -15,8 +15,10 @@ class FishSeasonCreate(FishSeasonBase):
 
 
 class FishSeasonUpdate(BaseModel):
-    season_start: date | None 
-    season_end: date | None 
+    season_start: date | None = None
+    season_end: date | None = None
+    region: str | None = None 
+    region_type: RegionType | None = None 
 
 
 class FishSeasonResponse(FishSeasonBase):

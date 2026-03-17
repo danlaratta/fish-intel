@@ -7,21 +7,21 @@ class FishingSessionBase(BaseModel):
     session_start: datetime  
     session_end: datetime  
     fishing_method: FishingMethod
-    updated_at: datetime | None 
 
 
 class FishingSessionCreate(FishingSessionBase):
     fishing_spot_id: int 
 
 
-class FishingSessionUpdate(FishingSessionBase):
-    updated_at: datetime | None
+class FishingSessionUpdate(BaseModel):
+    updated_at: datetime | None = None
 
 
 class FishingSessionResponse(FishingSessionBase):
     id: int 
     user_id: int 
     fishing_spot_id: int 
+    updated_at: datetime | None = None
 
     class Config:
         from_attributes = True

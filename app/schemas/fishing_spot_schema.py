@@ -5,6 +5,7 @@ class FishingSpotBase(BaseModel):
     name: str 
     longitude: float 
     latitude: float 
+    description: str | None = None 
 
 
 class FishingSpotCreate(FishingSpotBase):

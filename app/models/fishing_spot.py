@@ -1,4 +1,4 @@
-from sqlalchemy import ForeignKey, Integer, Float, String
+from sqlalchemy import ForeignKey, Integer, Float, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from typing import TYPE_CHECKING
 from app.models.base import Base 
@@ -19,6 +19,7 @@ class FishingSpot(Base):
     name: Mapped[str] = mapped_column(String(200), nullable=False, unique=True)
     longitude: Mapped[float] = mapped_column(Float, nullable=False)
     latitude: Mapped[float] = mapped_column(Float, nullable=False)
+    description: Mapped[str | None] = mapped_column(Text, nullable=True)
 
     # Foreign Key
     user_id: Mapped[int] = mapped_column(ForeignKey('users.id'), nullable=False)

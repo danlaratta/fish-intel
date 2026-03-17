@@ -5,28 +5,29 @@ from app.enums.subscription_tier import SubscriptionTier
 
 
 class UserBase(BaseModel):
-    first_name: str 
-    last_name: str 
+    first_name: str
+    last_name: str
     email: str
-    role: UserRole = UserRole.MEMBER
-    subscription_tier: SubscriptionTier = SubscriptionTier.FREE
-    is_active: bool = True 
-    updated_at: datetime | None 
 
 
 class UserCreate(UserBase):
     pass
 
 
-class UserUpdate(UserBase):
-    subscription_tier: SubscriptionTier = SubscriptionTier.FREE
-    is_active: bool = True 
-    updated_at: datetime | None
+class UserUpdate(BaseModel):
+    first_name: str | None = None
+    last_name: str | None = None
+    subscription_tier: SubscriptionTier | None = None
+    is_active: bool | None = None
 
 
 class UserResponse(UserBase):
-    id: int 
+    id: int
+    role: UserRole
+    subscription_tier: SubscriptionTier
+    is_active: bool
     created_at: datetime
+    updated_at: datetime | None
 
     class Config:
         from_attributes = True
